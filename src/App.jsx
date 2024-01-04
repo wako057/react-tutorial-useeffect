@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 
 import Places from './components/Places.jsx';
 import { AVAILABLE_PLACES } from './data.js';
@@ -50,15 +50,21 @@ function App() {
     }
   }
 
-  function handleRemovePlace() {
-    setPickedPlaces((prevPickedPlaces) =>
-      prevPickedPlaces.filter((place) => place.id !== selectedPlace.current)
-    );
-    // modal.current.close();
-    // setModalIsOpen(false);
-    const storedIds = JSON.parse(localStorage.getItem(SELECTED_PLACES)) || [];
-    localStorage.setItem(SELECTED_PLACES, JSON.stringify(storedIds.filter((id) => selectedPlace.current !== id)))
-  }
+  const handleRemovePlace = useCallback(
+    function handleRemovePlace() {
+      setPickedPlaces((prevPickedPlaces) =>
+        prevPickedPlaces.filter((place) => place.id !== selectedPlace.current)
+      );
+
+      // modal.current.close();
+      setModalIsOpen(false);
+
+      const storedIds = JSON.parse(localStorage.getItem(SELECTED_PLACES)) || [];
+      localStorage.setItem(
+        SELECTED_PLACES, 
+        JSON.stringify(storedIds.filter((id) => selectedPlace.current !== id))
+        );
+    }, []);
 
   function handleStopRemovePlace() {
     setModalIsOpen(false);
