@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
 function Modal({ open, children, onClose }) {
@@ -6,7 +6,7 @@ function Modal({ open, children, onClose }) {
 
   useEffect(() => {
     if (open) {
-      dialog.current.showModal()
+      dialog.current.showModal();
     } else {
       dialog.current.close();
     }
@@ -18,6 +18,6 @@ function Modal({ open, children, onClose }) {
     </dialog>,
     document.getElementById('modal')
   );
-};
+}
 
 export default Modal;

@@ -66,9 +66,9 @@ function App() {
         );
     }, []);
 
-  function handleStopRemovePlace() {
-    setModalIsOpen(false);
-  }
+  // function handleStopRemovePlace() {
+  //   setModalIsOpen(false);
+  // }
 
   return (
     <>
