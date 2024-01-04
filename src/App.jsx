@@ -60,9 +60,13 @@ function App() {
     localStorage.setItem(SELECTED_PLACES, JSON.stringify(storedIds.filter((id) => selectedPlace.current !== id)))
   }
 
+  function handleStopRemovePlace() {
+    setModalIsOpen(false);
+  }
+
   return (
     <>
-      <Modal open={modalIsOpen}>
+      <Modal open={modalIsOpen} onClose={handleStopRemovePlace}>
         <DeleteConfirmation
           onCancel={handleStopRemovePlace}
           onConfirm={handleRemovePlace}
