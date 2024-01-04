@@ -8,7 +8,7 @@ import logoImg from './assets/logo.png';
 import { sortPlacesByDistance } from './loc.js';
 
 const SELECTED_PLACES = 'selectedPlaces';
-const storedIds = JSON.parse(localStorage.getItem(SELECTED_PLACES));
+const storedIds = JSON.parse(localStorage.getItem(SELECTED_PLACES)) || [];
 const storedPlaces = storedIds.map((id) => AVAILABLE_PLACES.find(place => place.id === id));
 
 function App() {
